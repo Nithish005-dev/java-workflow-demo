@@ -1,0 +1,20 @@
+name: Java Maven Containerized
+ 
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+ 
+jobs:
+  build-container:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Build Docker image
+        run: docker build -t java-maven-app .
+ 
+      - name: Run Docker container
+        run: docker run --rm java-maven-app
