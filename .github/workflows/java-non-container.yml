@@ -24,4 +24,4 @@ jobs:
         run: mvn clean package
  
       - name: Run Java app
-        run: java -cp target/java-demo-1.0.jar com.example.App
+        run: mvn exec:java-Dexec.mainClass="com.example.App"
