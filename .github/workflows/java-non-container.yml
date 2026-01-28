@@ -1,9 +1,9 @@
 name: Java Maven Non-Containerized
  
 on:
-  workflow_dispatch:
   push:
     branches: [ main ]
+  workflow_dispatch:
  
 jobs:
   build-run:
@@ -16,12 +16,12 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
           cache: maven
  
-      - name: Build with Maven
+      - name: Build project
         run: mvn clean package
  
       - name: Run Java app
-        run: mvn exec:java -Dexec.mainClass=com.example.App
+        run: java -jar target/java-demo-1.0.jar
