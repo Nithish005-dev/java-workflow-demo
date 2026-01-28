@@ -1,0 +1,27 @@
+name: Java Maven Non-Containerized
+ 
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+ 
+jobs:
+  build-run:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: maven
+ 
+      - name: Build with Maven
+        run: mvn clean package
+ 
+      - name: Run Java app
+        run: java -cp target/java-demo-1.0.jar com.example.App
